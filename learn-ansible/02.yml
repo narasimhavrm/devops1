@@ -2,5 +2,5 @@
   hosts: all
   tasks:
     - name: Load another file
-      ansible.built.include_tasks:
+      ansible.builtin.include_tasks:
         file: univers.yml
