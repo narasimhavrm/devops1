@@ -1,0 +1,9 @@
+  - name: Print variable
+    hosts: all
+    vars:
+      URL: example.com
+
+    tasks:
+      - name: Print variable value
+        ansible.builtin.debug:
+          msg: universal resource locator is {{ URL }}
