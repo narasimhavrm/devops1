@@ -1,0 +1,6 @@
+- name: Demo to load another yaml file
+  hosts: all
+  tasks:
+    - name: Load another file
+      ansible.built.include_tasks:
+        file: univers.yml
