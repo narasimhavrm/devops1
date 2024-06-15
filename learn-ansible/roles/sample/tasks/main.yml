@@ -1,6 +1,3 @@
-- name: Testing Role play
-  hosts: all
-  roles:
-    - name: Sample role
-      ansible.builtin.debug:
-        msg: Hello from Role
+- name: This is Sample role
+  ansible.builtin.debug:
+    msg: This msg from Sample role
