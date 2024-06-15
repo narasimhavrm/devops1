@@ -1,0 +1,6 @@
+- name: Testing Role play
+  hosts: local
+  roles:
+    - name: Sample role
+      ansible.builtin.debug:
+        msg: Hello from Role
