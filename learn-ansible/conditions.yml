@@ -1,11 +1,13 @@
-- name: Conditions
+- name: Demo on Conditions
   hosts: localhost
   connections: local
   tasks:
     - name: Hello Universe
       ansible.builtin.debug:
         msg: Hello Universe
+        when: var == "Universe"
 
     - name: Hello World
       ansible.builtin.debug:
         msg: Hello World
+        when: var == "World"
