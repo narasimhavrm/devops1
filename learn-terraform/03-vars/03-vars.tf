@@ -64,3 +64,9 @@ output details {
 output environment {
   value = var.env
 }
+
+variable url {}
+
+output URL {
+  value = var.url
+}
