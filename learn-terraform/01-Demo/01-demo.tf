@@ -6,3 +6,7 @@ resource "aws_instance" "web" {
     Name = "HelloWorld"
   }
 }
+
+provider "aws" {
+region = "us-east-1"  # Replace with your desired AWS region
+}
