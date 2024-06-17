@@ -23,7 +23,7 @@ output sample-extended {
 ## plain, list, map
 
 variable "training" {
-  default = DevOps
+  default = "DevOps"
 }
 
 variable "courses" {
