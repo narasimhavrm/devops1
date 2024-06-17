@@ -49,6 +49,8 @@ variable "Course_detail" {
 
 }
 
+variable "env" {}
+
 output train {
   value = var.training
 }
@@ -57,4 +59,8 @@ output course123 {
 }
 output details {
   value = var.Course_detail
+}
+
+output environment {
+  value = var.env
 }
