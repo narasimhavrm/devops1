@@ -18,3 +18,43 @@ output sample1 {
 output sample-extended {
   value = "Sample extended value is ${var.sample}"
 }
+
+## variable types
+## plain, list, map
+
+variable "training" {
+  default = DevOps
+}
+
+variable "courses" {
+  default =[
+  "DevOps",
+    "OPS",
+    "AWS"
+  ]
+}
+
+variable "Course_detail" {
+  default = {
+    "DevOps" = {
+      Course = "Devops"
+      time = "08AM"
+    }
+    "AWS" = {
+      Course = "AWS"
+      Time = "10AM"
+
+    }
+  }
+
+}
+
+output train {
+  value = var.training
+}
+output course123 {
+  value = var.courses
+}
+output details {
+  value = var.Course_detail
+}
