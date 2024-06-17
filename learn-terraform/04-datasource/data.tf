@@ -1,5 +1,6 @@
 data "aws_ec2_spot_price" "example" {
   instance_type     = "t3.small"
+  availability_zone = "us-east-1a"
 
   filter {
     name   = "product-description"
