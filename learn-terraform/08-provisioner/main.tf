@@ -13,17 +13,15 @@ data "aws_ami" "example" {
   name_regex       = "Centos-8-DevOps-Practice"
 
 }
-
-
-  provisioner "remote-exec" {
-    connection {
-      type     = "ssh"
-      user     = "centos"
-      password = "DevOps321"
-      host     = aws_instance.web.public_ip
-    }
-    inline = [
-      "sudo labauto ansible",
-      "ansible-pull -i localhost, -U https://github.com/raghudevopsb73/roboshop-ansible main.yml -e env=dev -e role_name=frontend",
-    ]
-  }
+#   provisioner "remote-exec" {
+#     connection {
+#       type     = "ssh"
+#       user     = "centos"
+#       password = "DevOps321"
+#       host     = aws_instance.web.public_ip
+#     }
+#     inline = [
+#       "sudo labauto ansible",
+#       "ansible-pull -i localhost, -U https://github.com/raghudevopsb73/roboshop-ansible main.yml -e env=dev -e role_name=frontend",
+#     ]
+#   }
