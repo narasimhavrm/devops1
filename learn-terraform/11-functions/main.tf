@@ -40,7 +40,7 @@ output "Aclasses" {
 }
 
 variable "a" {
-  a = 100
+  default = 100
 }
 
 output "a" {
