@@ -13,6 +13,9 @@ variable fruits {
 output "countOfFruits" {
   value = length(var.fruits)
 }
+output fruit4 {
+  value = element(fruits[4])
+}
 
 variable classes {
   default = {
