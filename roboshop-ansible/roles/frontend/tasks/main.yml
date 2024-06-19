@@ -2,7 +2,6 @@
   ansible.builtin.yum:
     name: nginx
     state: latest
-    become: yes
 
 - name: Remove directory
   ansible.builtin.file:

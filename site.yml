@@ -1,5 +1,6 @@
 # site.yml at the root level of your repository
 - hosts: localhost
+  become: yes
   roles:
     - role: roboshop-ansible/roles/frontend
       vars:
