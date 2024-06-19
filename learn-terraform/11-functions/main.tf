@@ -38,3 +38,11 @@ output "Aclasses" {
   value = lookup(lookup(var.classes, "AWS", null), "topics", "No Topics so far")
 
 }
+
+variable "a" {
+  a = 100
+}
+
+output "a" {
+  value = var.a > 100 ? "Surplus Quantity": "Less Quantity"
+}
