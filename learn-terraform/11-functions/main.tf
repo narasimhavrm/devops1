@@ -31,6 +31,7 @@ output "Dclasses" {
 
 }
 output "Aclasses" {
-  value = lookup(var.classes.AWS, "topics", "No Topics so far")
+  #value = lookup(var.classes.AWS, "topics", "No Topics so far")
+  value = lookup(lookup(var.classes, "AWS", null), "topics", "No Topics so far")
 
 }
