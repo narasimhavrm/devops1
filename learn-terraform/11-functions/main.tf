@@ -14,7 +14,7 @@ output "countOfFruits" {
   value = length(var.fruits)
 }
 output fruit4 {
-  value = element(fruits[4])
+  value = element(var.fruits[4])
 }
 
 variable classes {
