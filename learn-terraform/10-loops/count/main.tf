@@ -1,10 +1,20 @@
+# resource "aws_instance" "web" {
+#   count = length(var.instances)
+#   ami           = data.aws_ami.example.id
+#   instance_type = "t2.micro"
+#
+#   tags = {
+#     Name = "HelloWorld"
+#   }
+# }
+
 resource "aws_instance" "web" {
   count = length(var.instances)
   ami           = data.aws_ami.example.id
   instance_type = "t2.micro"
 
   tags = {
-    Name = "HelloWorld"
+    Name = element(var.instances, count.index)
   }
 }
 
