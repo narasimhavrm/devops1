@@ -13,3 +13,24 @@ variable fruits {
 output "countOfFruits" {
   value = length(var.fruits)
 }
+
+variable classes {
+  default = {
+    Devops = {
+      name = "training"
+      topics = ["AWS", "Ansible", "Terraform"]
+    }
+    AWS = {
+      name = "train"
+    }
+  }
+}
+
+output "Dclasses" {
+  value = var.classes.Devops["topics"]
+
+}
+output "Aclasses" {
+  value = var.classes.AWS["topics"]
+
+}
