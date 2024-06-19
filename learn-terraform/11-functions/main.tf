@@ -31,6 +31,6 @@ output "Dclasses" {
 
 }
 output "Aclasses" {
-  value = var.classes.AWS["topics"]
+  value = lookup(var.classes.AWS, "topics", "No Topics so far")
 
 }
