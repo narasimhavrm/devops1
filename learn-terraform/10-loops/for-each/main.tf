@@ -2,10 +2,10 @@ resource "aws_instance" "web" {
   #count = length(var.instances)
   for_each = var.instances
   ami           = data.aws_ami.example.id
-  instance_type = "t2.micro"
+  instance_type = lookup(each.value, "instance_type", "t2.micro")
 
   tags = {
-    Name = "hello"
+    Name = each.key
   }
 }
 
@@ -20,7 +20,7 @@ variable instances {
   default = {
     frontend = {
       name = "frontend"
-      instance_type = "t2.nano"
+
     }
     catalogue = {
       name = "catalogue"
