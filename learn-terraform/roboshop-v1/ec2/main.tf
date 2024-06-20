@@ -16,14 +16,14 @@ resource "null_resource" "ansible" {
       user     = "centos"
       password = "DevOps321"
       host     = aws_instance.web.public_ip
-      }
     }
 
-  inline = [
-    "sudo labauto ansible",
-    "ansible-pull -i localhost, -U https://github.com/narasimhavrm/devops1.git site.yml -e env=dev -e role_name=${var.name}"
+    inline = [
+      "sudo labauto ansible",
+      "ansible-pull -i localhost, -U https://github.com/raghudevopsb73/roboshop-ansible main.yml -e env=dev -e role_name=${var.name}"
     ]
   }
+}
 
 resource "aws_route53_record" "www" {
   zone_id = "Z034092834K6LW0HQ9HDN"
