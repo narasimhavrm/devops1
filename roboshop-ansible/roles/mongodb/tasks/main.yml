@@ -7,7 +7,7 @@
 - name: Installing MongoDB server
   ansible.builtin.yum:
     name: mongodb-org
-    status: latest
+    state: latest
 
 - name: Update MongoDB Listen Address
   ansible.builtin.replace:
