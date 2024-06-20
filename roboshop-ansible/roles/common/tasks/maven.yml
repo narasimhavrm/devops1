@@ -1,0 +1,39 @@
+- name: Install Maven
+  ansible.builtin.yum:
+    name: maven
+    state: latest
+
+- name: Load app preset
+  ansible.builtin.import_task:
+    file: app_presetup.yml
+
+- name: Download Maven Dependencies
+  ansible.builtin.shell: mvn clean package; mv target/{{ component }}-1.0.jar {{ component }}.jar
+  args:
+    chdir: /app
+
+- name: MySQL Schema Setup
+  ansible.builtin.import_tasks:
+    file: mysql_schema_setup.yml
+
+- name: SystemD Setup
+  ansible.builtin.import_tasks:
+    file: systemd_setup.yml
+
+
+#  maven() {
+#    echo -e "${color} Install Maven ${nocolor}"
+#    yum install maven -y  &>>$log_file
+#    stat_check $?
+#
+#    app_presetup
+#
+#    echo -e "${color} Download Maven Dependencies ${nocolor}"
+#    mvn clean package  &>>$log_file
+#    mv target/${component}-1.0.jar ${component}.jar  &>>$log_file
+#    stat_check $?
+#
+#    mysql_schema_setup
+#    systemd_setup
+#
+#  }

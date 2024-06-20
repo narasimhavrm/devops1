@@ -1,0 +1,35 @@
+- name: Install python
+  ansible.builtin.yum:
+    name:
+      - python36
+      - gcc
+      - python3-devel
+    state: installed
+
+- name: App Presetup
+  ansible.builtin.import_tasks:
+    file: app_presetup.yml
+
+- name: Install Application Dependencies
+  ansible.builtin.shell: pip3.6 install -r requirements.txt
+  args:
+    chdir: /app
+
+- name: SystemD Setup
+  ansible.builtin.import_tasks:
+    file: systemd_setup.yml
+
+#  python() {
+#    echo -e "${color} Install Python ${nocolor}"
+#    yum install python36 gcc python3-devel -y &>>/tmp/roboshop.log
+#    stat_check $?
+#
+#    app_presetup
+#
+#    echo -e "${color} Install Application Dependencies ${nocolor}"
+#    cd /app
+#    pip3.6 install -r requirements.txt &>>/tmp/roboshop.log
+#    stat_check $?
+#
+#    systemd_setup
+#  }

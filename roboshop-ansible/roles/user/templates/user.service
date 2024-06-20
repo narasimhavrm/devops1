@@ -1,0 +1,26 @@
+[Unit]
+Description = User Service
+[Service]
+User=roboshop
+Environment=MONGO=true
+Environment=REDIS_HOST=redis-dev.devopsb73.store
+Environment=MONGO_URL="mongodb://mongodb-dev.devopsb73.store:27017/users"
+ExecStart=/bin/node /app/server.js
+SyslogIdentifier=user
+
+[Install]
+WantedBy=multi-user.target
+
+#[Unit]
+#Description = User Service
+#[Service]
+#User=roboshop
+#Environment=DOCUMENTDB={{ lookup('amazon.aws.aws_ssm', 'roboshop.{{env}}.user.mongo', region='us-east-1') }}
+#Environment=REDIS_HOST={{ lookup('amazon.aws.aws_ssm', 'roboshop.{{env}}.user.redis_host', region='us-east-1') }}
+#Environment=MONGO_URL="{{ lookup('amazon.aws.aws_ssm', 'roboshop.{{env}}.user.mongo_url', region='us-east-1') }}"
+#Environment=READABLE_STREAM=enable
+#ExecStart=/bin/node /app/server.js
+#SyslogIdentifier=user
+#
+#[Install]
+#WantedBy=multi-user.target

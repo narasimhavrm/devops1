@@ -1,0 +1,21 @@
+- name: Load python
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: python
+
+#- name: Load Prometheus Node exporter
+#  ansible.builtin.import_role:
+#    name: prometheus
+#    tasks_from: node-exporter
+
+
+#source common.sh
+#component=payment
+#
+#roboshop_app_password=$1
+#if [ -z "$roboshop_app_password" ]; then
+#echo roboshop_app_password is missing
+#exit 1
+#fi
+#
+#python

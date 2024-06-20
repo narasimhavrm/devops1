@@ -1,0 +1,33 @@
+- name: Copy MongoDB Repo file
+  ansible.builtin.template:
+    src: mongodb.repo
+    dest: /etc/yum.repos.d/mongodb.repo
+
+- name: Install MongoDB Client
+  ansible.builtin.yum:
+    name: mongodb-org-shell
+    state: installed
+
+- name: Load Schema
+  ansible.builtin.shell: mongo --host mongodb-dev.devopsb73.store <${app_path}/schema/$component.js
+ #  ansible.builtin.shell: mongo --ssl --host {{ lookup('amazon.aws.aws_ssm', 'roboshop.{{env}}.{{component}}.docdb_endpoint', region='us-east-1') }}:27017 --sslCAFile /app/rds-combined-ca-bundle.pem --username {{ lookup('amazon.aws.aws_ssm', 'roboshop.{{env}}.docdb.username', region='us-east-1') }} --password {{ lookup('amazon.aws.aws_ssm', 'roboshop.{{env}}.docdb.password', region='us-east-1') }} </app/schema/{{ component }}.js
+
+
+#  mongo_schema_setup() {
+#    echo -e "${color} Copy MongoDB Repo file ${nocolor}"
+#    cp /home/centos/roboshop-shell/mongodb.repo /etc/yum.repos.d/mongodb.repo  &>>$log_file
+#    stat_check $?
+#
+#    echo -e "${color} Install MongoDB Client ${nocolor}"
+#    yum install mongodb-org-shell -y  &>>$log_file
+#    stat_check $?
+#
+#    echo -e "${color} Load Schema ${nocolor}"
+#    mongo --host mongodb-dev.devopsb73.store <${app_path}/schema/$component.js  &>>$log_file
+#    stat_check $?
+#  }
+
+- name: Copy nginx configuration
+  ansible.builtin.template:
+    src: nginx.conf
+    dest: /etc/nginx/nginx.conf
