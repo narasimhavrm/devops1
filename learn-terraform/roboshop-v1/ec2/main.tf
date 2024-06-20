@@ -19,9 +19,9 @@ resource "null_resource" "ansible" {
       }
     }
 
-    inline = [
-      "sudo labauto ansible",
-      "ansible-pull -i localhost, -U https://github.com/narasimhavrm/devops1.git site.yml -e env=dev -e role_name=${var.name}"
+  inline = [
+    "sudo labauto ansible",
+    "ansible-pull -i localhost, -U https://github.com/narasimhavrm/devops1.git site.yml -e env=dev -e role_name=${var.name}"
     ]
   }
 
