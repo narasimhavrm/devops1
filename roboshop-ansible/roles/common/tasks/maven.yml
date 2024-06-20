@@ -4,7 +4,7 @@
     state: latest
 
 - name: Load app preset
-  ansible.builtin.import_task:
+  ansible.builtin.import_tasks:
     file: app_presetup.yml
 
 - name: Download Maven Dependencies
