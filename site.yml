@@ -2,7 +2,7 @@
 - hosts: localhost
   become: yes
   roles:
-    - role: roboshop-ansible/roles/frontend
+    - role: roboshop-ansible/roles
       vars:
         env: "{{ env }}"
         role_name: "{{ role_name }}"
