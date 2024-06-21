@@ -1,6 +1,6 @@
 - name: Fetch AWS SSM parameter values
   hosts: localhost
-  connections: local
+  connection: local
   tasks:
     - name: Fetching TEST param value
       ansible.builtin.debug:
