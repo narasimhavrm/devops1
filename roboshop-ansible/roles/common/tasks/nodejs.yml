@@ -20,7 +20,7 @@
 #    file: systemd_setup.yml
 
 - name: copy systemD Service
-  ansible.builtin.template:
+  ansible.builtin.copy:
     src: "{{ component }}.service"
     dest: /etc/systemd/system/{{ component }}.service
 
