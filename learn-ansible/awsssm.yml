@@ -4,4 +4,4 @@
   tasks:
     - name: Fetching TEST param value
       ansible.builtin.debug:
-        msg: Parameter value - {{ lookup('amazon.aws.aws_ssm', 'test.test') }}
+        msg: Parameter value - {{ lookup('amazon.aws.aws_ssm', 'test.test', region='us-east-1') }}
