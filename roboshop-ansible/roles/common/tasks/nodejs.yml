@@ -22,7 +22,7 @@
 
 - name: Load Schema
   ansible.builtin.import_tasks:
-  file: mongo_schema_setup.yml
+    file: mongo_schema_setup.yml
   when: load_schema
 
 #- name: copy systemD Service
