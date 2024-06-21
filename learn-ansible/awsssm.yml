@@ -1,7 +1,7 @@
 - name: Fetch AWS SSM parameter values
   hosts: localhost
-  connection: local
+  connections: local
   tasks:
-    name: Fetching TEST param value
-    ansible.builtin.debug:
-      msg: Parameter value - {{ lookup('amazon.aws.aws_ssm', 'test.test') }}
+    - name: Fetching TEST param value
+      ansible.builtin.debug:
+        msg: Parameter value - {{ lookup('amazon.aws.aws_ssm', 'test.test') }}
