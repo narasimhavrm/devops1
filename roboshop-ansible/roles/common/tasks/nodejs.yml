@@ -15,21 +15,21 @@
   args:
     chdir: /app
 
-#- name: SystemD Setup
-#  ansible.builtin.import_tasks:
-#    file: systemd_setup.yml
+- name: SystemD Setup
+  ansible.builtin.import_tasks:
+    file: systemd_setup.yml
 
-- name: copy systemD Service
-  ansible.builtin.template:
-    src: "{{ component }}.service"
-    dest: /etc/systemd/system/{{ component }}.service
-
-- name: Start {{ component }} Service
-  ansible.builtin.systemd:
-    name: "{{ component }}"
-    state: restarted
-    enabled: yes
-    daemon-reload: yes
+#- name: copy systemD Service
+#  ansible.builtin.template:
+#    src: "{{ component }}.service"
+#    dest: /etc/systemd/system/{{ component }}.service
+#
+#- name: Start {{ component }} Service
+#  ansible.builtin.systemd:
+#    name: "{{ component }}"
+#    state: restarted
+#    enabled: yes
+#    daemon-reload: yes
 
 #  nodejs() {
 #    echo -e "${color} Configuring NodeJS Repos ${nocolor}"
