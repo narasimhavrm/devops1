@@ -1,8 +1,0 @@
-# site.yml at the root level of your repository
-- hosts: localhost
-  become: yes
-  roles:
-    - role: roboshop-ansible/roles/{{ role_name }}
-      vars:
-        env: "{{ env }}"
-        role_name: "{{ role_name }}"
