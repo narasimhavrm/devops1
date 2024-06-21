@@ -27,7 +27,7 @@
 #    stat_check $?
 #  }
 
-- name: Copy nginx configuration
-  ansible.builtin.template:
-    src: nginx.conf
-    dest: /etc/nginx/nginx.conf
+#- name: Copy nginx configuration
+#  ansible.builtin.template:
+#    src: nginx.conf
+#    dest: /etc/nginx/nginx.conf
