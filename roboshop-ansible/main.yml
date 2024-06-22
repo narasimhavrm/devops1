@@ -2,5 +2,8 @@
   hosts: all
   become: yes
   serial: 1
+  tasks:
+    - name: Setup hostname
+
   roles:
     - "{{ role_name }}"

@@ -1,3 +1,4 @@
+
 - name: Disable MySQL Default Version
   ansible.builtin.shell: yum module disable mysql -y
 
