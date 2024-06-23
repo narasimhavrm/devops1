@@ -1,0 +1,8 @@
+- name: Setup RoboShop ELK
+  hosts: localhost
+  become: yes
+  serial: 1
+  connection: local
+
+  roles:
+    - elk

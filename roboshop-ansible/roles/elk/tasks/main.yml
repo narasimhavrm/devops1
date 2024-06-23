@@ -1,0 +1,11 @@
+- name: Copy logstash config file
+  ansible.builtin.tempalte:
+    src: logstash.conf
+    dest: /etc/logstash/conf.d/logstash.conf
+
+- name: Restart logstash
+  ansible.builtin.systemd:
+    name: logstash
+    state: restarted
+
+
