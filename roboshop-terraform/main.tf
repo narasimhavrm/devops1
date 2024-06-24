@@ -3,7 +3,7 @@ module "instances" {
   source   = "git::https://github.com/narasimhavrm/devops1.git//tf-module-app"
   component     = each.key
   env = var.env
-  tags = each.value["tags"]
+  tags = merge(each.value["tags"], var.tags)
 }
 
 # module "test" {
