@@ -69,9 +69,9 @@ resource "aws_security_group" "sg" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-  tags = {
+  tags = merge({
     Name = "${var.component}-${var.env}-sg"
-  }
+  }, var.tags)
 }
 #DNS record
 resource "aws_route53_record" "dns" {
