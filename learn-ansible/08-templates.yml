@@ -1,0 +1,10 @@
+- name: Demo on templates
+  hosts: localhost
+  connection: local
+  vars:
+    fruits:
+      - name: apple
+        quantity: 100
+      - name: orange
+        quantity: 200
+
