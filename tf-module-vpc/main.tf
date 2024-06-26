@@ -15,5 +15,5 @@ resource "aws_subnet" "main" {
   tags = merge({
     Name = "${var.env}-web-subnet"
       }, var.tags )
-  }
+
 }
