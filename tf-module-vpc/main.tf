@@ -5,7 +5,7 @@ resource "aws_vpc" "main" {
     Name = "${var.env}-vpc"
   }, var.tags )
 }
-}
+
 
 resource "aws_subnet" "main" {
   count = lenth(var.web_subnet_cidr_block)
