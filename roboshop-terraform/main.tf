@@ -8,11 +8,21 @@ module "vpc" {
   subnets = each.value["subnets"]
   default_vpc_id = var.default_vpc_id
 
-
-
-
 }
 
+# module "app_server" {
+#   source = "git::https://github.com/narasimhavrm/devops1.git//tf-module-app"
+#   env = var.env
+#   tags = var.tags
+#   component = "test"
+#   subnet_id =
+# }
+
+
+output "subnet_ids" {
+  value = module.vpc
+
+}
 
 
 
