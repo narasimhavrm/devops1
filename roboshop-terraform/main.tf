@@ -35,6 +35,7 @@ module "rabbitmq" {
 
   env = var.env
   tags = var.tags
+  allow_ssh_cidr = var.allow_ssh_cidr
 
 }
 
