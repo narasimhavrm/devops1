@@ -58,6 +58,7 @@ vpc = {
 
 default_vpc_id = "vpc-07c5e9a858a2f95c1"
 default_vpc_rt = "rtb-035d7d93dadf94f09"
+allow_ssh_cidr = ["172.31.16.108/32"]
 
 rabbitmq = {
   main = {
