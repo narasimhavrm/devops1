@@ -48,8 +48,10 @@ module "rds" {
   engine = each.value["engine"]
   engine_version = each.value["engine_version"]
   database_name = each.value["database_name"]
-  subnet_ids = lookup(lookup(lookup(lookup(module.vpc, "main", null), "subnet_ids", null), "db", null), "subnet_ids", null)
   instance_class = each.value["instance_class"]
+  subnet_ids = lookup(lookup(lookup(lookup(module.vpc, "main", null), "subnet_ids", null), "db", null), "subnet_ids", null)
+  vpc_id = lookup(lookup(module.vpc, "main", null), "vpc_id", null)
+  sg_subnet_cidr = lookup(lookup(lookup(lookup(var.vpc, "main", null), "subnets", null), "app", null), "cidr_block", null)
 
   tags = var.tags
   env = var.env
