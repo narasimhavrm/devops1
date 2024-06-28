@@ -18,5 +18,14 @@ resource "aws_rds_cluster" "main" {
 
 }
 
+resource "aws_rds_cluster_instance" "main" {
+  count              = var.instance_count
+  identifier         = "${var.component}-${var.env}-instance-${count.index}"
+  cluster_identifier = aws_rds_cluster.main.id
+  instance_class     = var.instance_class
+  engine             = var.engine
+  engine_version     = var.engine_version
+}
+
 
 
