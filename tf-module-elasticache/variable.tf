@@ -6,7 +6,6 @@ variable "sg_subnet_cidr" {}
 variable "kms_key_arn" {}
 variable "engine" {}
 variable "node_type" {}
-variable "num_cache_nodes" {}
 variable "engine_version" {}
 variable "port" {
   default = 6379
