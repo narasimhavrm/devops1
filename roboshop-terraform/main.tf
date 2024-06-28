@@ -65,7 +65,7 @@ module "documentdb" {
   component = each.value["component"]
 
   subnet_ids = lookup(lookup(lookup(lookup(module.vpc, "main", null), "subnet_ids", null), "db", null), "subnet_ids", null)
-  #vpc_id = lookup(lookup(module.vpc, "main", null), "vpc_id", null)
+  vpc_id = lookup(lookup(module.vpc, "main", null), "vpc_id", null)
   sg_subnet_cidr = lookup(lookup(lookup(lookup(var.vpc, "main", null), "subnets", null), "app", null), "cidr_block", null)
 
   tags = var.tags
@@ -78,9 +78,14 @@ module "elasticache" {
   source = "git::https://github.com/narasimhavrm/devops1.git//tf-module-elasticache"
   for_each = var.elasticache
   component = each.value["component"]
+  engine = each.value["engine"]
+  engine_version = each.value["engine_version"]
+  replicas_per_node_group = each.value["replicas_per_node_group"]
+  num_node_groups = each.value["num_node_groups"]
+  node_type = each.value["node_type"]
 
   subnet_ids = lookup(lookup(lookup(lookup(module.vpc, "main", null), "subnet_ids", null), "db", null), "subnet_ids", null)
-  #vpc_id = lookup(lookup(module.vpc, "main", null), "vpc_id", null)
+  vpc_id = lookup(lookup(module.vpc, "main", null), "vpc_id", null)
   sg_subnet_cidr = lookup(lookup(lookup(lookup(var.vpc, "main", null), "subnets", null), "app", null), "cidr_block", null)
 
   tags = var.tags
