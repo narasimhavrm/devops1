@@ -63,6 +63,10 @@ module "documentdb" {
   source = "git::https://github.com/narasimhavrm/devops1.git//tf-module-documentdb"
   for_each = var.documentdb
   component = each.value["component"]
+  engine = each.value["engine"]
+  engine_version = each.value["engine_version"]
+  instance_class = each.value["instance_class"]
+  db_instance_count = each.value["db_instance_count"]
 
   subnet_ids = lookup(lookup(lookup(lookup(module.vpc, "main", null), "subnet_ids", null), "db", null), "subnet_ids", null)
   vpc_id = lookup(lookup(module.vpc, "main", null), "vpc_id", null)
