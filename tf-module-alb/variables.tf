@@ -8,5 +8,6 @@ variable "port" {
 }
 variable "subnets" {}
 variable "tags" {}
+variable "sg_subnet_cidr" {}
 
 
