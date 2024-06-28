@@ -41,18 +41,20 @@ module "rabbitmq" {
 
 }
 
-# module "rds" {
-#   source = "git::https://github.com/narasimhavrm/devops1.git//tf-module-rds"
-#   for_each = var.rds
-#   component = each.value["component"]
-#   engine = each.value["engine"]
-#   engine_version = each.value["engine_version"]
-#   database_name = each.value["database_name"]
-#   subnet_ids = lookup(lookup(lookup(lookup(module.vpc, "main", null), "subnet_ids", null), "db", null), "subnet_ids", null)
-#
-#   tags = var.tags
-#   env = var.env
-# }
+module "rds" {
+  source = "git::https://github.com/narasimhavrm/devops1.git//tf-module-rds"
+  for_each = var.rds
+  component = each.value["component"]
+  engine = each.value["engine"]
+  engine_version = each.value["engine_version"]
+  database_name = each.value["database_name"]
+  subnet_ids = lookup(lookup(lookup(lookup(module.vpc, "main", null), "subnet_ids", null), "db", null), "subnet_ids", null)
+
+  tags = var.tags
+  env = var.env
+  kms_key_id = var.kms_key_id
+
+}
 
 # module "instances" {
 #   for_each = var.components
