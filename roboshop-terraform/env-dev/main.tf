@@ -185,6 +185,7 @@ apps = {
     subnet_ref = "app"
     lb_ref = "private"
     lb_rule_priority = 104
+    extra_param_access = ["arn:aws:ssm:us-east-1:079329262703:parameter/roboshop.dev.mysql.*"]
 
   }
   frontend = {

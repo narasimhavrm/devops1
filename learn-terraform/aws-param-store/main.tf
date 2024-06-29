@@ -17,7 +17,7 @@ variable "params" {
 
     {name = "roboshop.dev.cart.redis_host", value = "elasticache-dev.iiya6y.clustercfg.use1.cache.amazonaws.com", type = "String"},
     {name = "roboshop.dev.cart.catalogue_host", value = "catalogue-dev.mystorymyway.online", type = "String"},
-    {name = "roboshop.dev.cart.catalogue_port", value = "443", type = "String"},
+    {name = "roboshop.dev.cart.catalogue_port", value = "80", type = "String"},
     {name = "roboshop.dev.catalogue.mongo", value = "true", type = "String"},
     #{name = "roboshop.dev.catalogue.mongo_url", value = "mongodb://mongodb-dev.mystorymyway.online:27017/catalogue", type = "String"},
 
@@ -37,6 +37,7 @@ variable "params" {
     {name = "roboshop.dev.rabbitmq.amqp_user", value = "roboshop", type = "String"},
     {name = "roboshop.dev.mysql.username", value = "roboshop", type = "String"},
     {name = "roboshop.dev.docdb.username", value = "roboshop", type = "String"},
+    {name = "roboshop.dev.mysql.endpoint", value = "rds-dev.cluster-chcio4eskuv8.us-east-1.rds.amazonaws.com", type = "String"},
 
 
 
