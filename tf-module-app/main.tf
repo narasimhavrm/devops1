@@ -29,11 +29,29 @@ resource "aws_security_group" "main" {
   }
 }
 
+
+
+
 resource "aws_lb_target_group" "main" {
   name     = "${var.component}-${var.env}-tg"
   port     = var.app_port
   protocol = "HTTP"
   vpc_id   = var.vpc_id
+}
+resource "aws_lb_listener_rule" "static" {
+  listener_arn = var.listener_arn
+  priority     = var.lb_rule_priority
+
+  action {
+    type             = "forward"
+    target_group_arn = aws_lb_target_group.main.arn
+  }
+
+  condition {
+    host_header {
+      values = ["${var.component}-${var.env}.mystorymyway.online"]
+    }
+  }
 }
 
 resource "aws_launch_template" "main" {
@@ -87,7 +105,7 @@ resource "aws_autoscaling_group" "main" {
 }
 
 resource "aws_route53_record" "dns" {
-  name    = "${var.component}-dev"
+  name    = "${var.component}-${var.env}"
   type    = "CNAME"
   zone_id = "Z034092834K6LW0HQ9HDN"
   ttl = 30
