@@ -15,9 +15,9 @@ variable "params" {
     {name = "roboshop.dev.frontend.payment_url", value = "https://payment-dev.mystorymyway.online/", type = "String"},
     {name = "roboshop.dev.frontend.shipping_url", value = "https://shipping-dev.mystorymyway.online/", type = "String"},
 
-    {name = "roboshop.dev.cart.redis_host", value = "redis-dev.mystorymyway.online", type = "String"},
+    {name = "roboshop.dev.cart.redis_host", value = "elasticache-dev.iiya6y.clustercfg.use1.cache.amazonaws.com", type = "String"},
     {name = "roboshop.dev.cart.catalogue_host", value = "catalogue-dev.mystorymyway.online", type = "String"},
-    {name = "roboshop.dev.cart.catalogue_port", value = "8080", type = "String"},
+    {name = "roboshop.dev.cart.catalogue_port", value = "443", type = "String"},
     {name = "roboshop.dev.catalogue.mongo", value = "true", type = "String"},
     #{name = "roboshop.dev.catalogue.mongo_url", value = "mongodb://mongodb-dev.mystorymyway.online:27017/catalogue", type = "String"},
 
