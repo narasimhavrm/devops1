@@ -86,6 +86,13 @@ resource "aws_autoscaling_group" "main" {
   }
 }
 
+resource "aws_route53_record" "dns" {
+  name    = "${var.component}-dev"
+  type    = "CNAME"
+  zone_id = "Z034092834K6LW0HQ9HDN"
+  ttl = 30
+  records = [var.lb_dns_name]
+}
 
 
 
