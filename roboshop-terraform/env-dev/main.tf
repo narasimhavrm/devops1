@@ -137,6 +137,62 @@ apps = {
     lb_ref = "private"
     lb_rule_priority = 100
   }
+  user = {
+    component = "user"
+    app_port = 8080
+    instance_type = "t2.micro"
+    desired_capacity = 1
+    max_size = 1
+    min_size = 1
+    subnet_ref = "app"
+    lb_ref = "private"
+    lb_rule_priority = 101
+  }
+  catalogue = {
+    component = "catalogue"
+    app_port = 8080
+    instance_type = "t2.micro"
+    desired_capacity = 1
+    max_size = 1
+    min_size = 1
+    subnet_ref = "app"
+    lb_ref = "private"
+    lb_rule_priority = 102
+  }
+  payment = {
+    component = "payment"
+    app_port = 8080
+    instance_type = "t2.micro"
+    desired_capacity = 1
+    max_size = 1
+    min_size = 1
+    subnet_ref = "app"
+    lb_ref = "private"
+    lb_rule_priority = 103
+  }
+  shipping = {
+    component = "shipping"
+    app_port = 8080
+    instance_type = "t2.micro"
+    desired_capacity = 1
+    max_size = 1
+    min_size = 1
+    subnet_ref = "app"
+    lb_ref = "private"
+    lb_rule_priority = 104
+  }
+  frontend = {
+    component = "frontend"
+    app_port = 80
+    instance_type = "t2.micro"
+    desired_capacity = 1
+    max_size = 1
+    min_size = 1
+    subnet_ref = "web"
+    lb_ref = "public"
+    lb_rule_priority = 100
+  }
+
 
 }
 
