@@ -149,7 +149,7 @@ module "apps" {
   kms_key_id = var.kms_key_arn
   allow_ssh_cidr = var.allow_ssh_cidr
   lb_rule_priority = each.value["lb_rule_priority"]
-
+  kms_arn = var.kms_key_arn
 }
 
 
