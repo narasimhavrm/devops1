@@ -5,7 +5,7 @@ variable tags {
 }
 variable "subnets" {}
 variable "vpc_id" {}
-variable "sg_subnets_cidr" {}
+variable "sg_subnet_cidr" {}
 variable "app_port" {}
 variable "kms_key_id" {}
 variable "instance_type" {}
