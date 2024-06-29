@@ -133,14 +133,14 @@ module "apps" {
   source = "git::https://github.com/narasimhavrm/devops1.git//tf-module-app"
   for_each = var.apps
   app_port = each.value["app_port"]
-  desired_capacity = each.value["desirec_capacity"]
+  desired_capacity = each.value["desired_capacity"]
   instance_type = each.value["instance_type"]
   max_size = each.value["max_size"]
   min_size = each.value["min_size"]
   component = each.value["component"]
 
   subnets = lookup(lookup(lookup(lookup(module.vpc, "main", null), "subnet_ids", null), each.value["subnet_ref"], null), "subnet_ids", null)
-  sg_subnet_cidr = lookup(lookup(lookup(lookup(module.vpc, "main", null), "subnet_ids", null), each.value["subnet_ref"], null), "subnet_ids", null)[0]
+  sg_subnets_cidr = lookup(lookup(lookup(lookup(module.vpc, "main", null), "subnet_ids", null), each.value["subnet_ref"], null), "subnet_ids", null)[0]
   vpc_id = lookup(lookup(module.vpc, "main", null), "vpc_id", null)
 
   env = var.env
