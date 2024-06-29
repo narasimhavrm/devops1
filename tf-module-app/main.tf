@@ -1,57 +1,105 @@
-# #IAM policy
-# resource "aws_iam_policy" "policy" {
-#   name        = "${var.component}-${var.env}-ssm-pm-policy"
-#   path        = "/"
-#   description = "${var.component}-${var.env}-ssm-pm-policy"
+# # security group
+resource "aws_security_group" "main" {
+  name        = "${var.component}-${var.env}-sg"
+  description = "${var.component}-${var.env}-sg"
+  vpc_id = var.vpc_id
+
+  ingress {
+    from_port   = var.app_port
+    to_port     = var.app_port
+    protocol    = "-1"
+    cidr_blocks = var.sg_subnets_cidr
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  tags = {
+    Name = "${var.component}-${var.env}-sg"
+  }
+}
+
+resource "aws_launch_template" "main" {
+  name = "${var.component}-${var.env}"
+
+  iam_instance_profile {
+    name = aws_iam_instance_profile.instance_profile.name
+  }
+  image_id = data.aws_ami.ami.id
+  instance_type = var.instance_type
+  vpc_security_group_ids = [aws_security_group.main.id ]
+
+  tag_specifications {
+    resource_type = "instance"
+    tags = merge({ Name = "${var.component}-${var.env}", monitor = "true" }, var.tags )
+  }
+
+  user_data = templatefile("${path.module}/userdata.sh", {
+    env =var.env
+    component = var.component
+
+  })
+  root_block_device = {
+    encrypted = true
+    kms_key_id = var.kms_key_id
+  }
+}
+
+resource "aws_launch_template" "foobar" {
+  name_prefix   = "foobar"
+  image_id      = "ami-1a2b3c"
+  instance_type = "t2.micro"
+}
+
+resource "aws_autoscaling_group" "main" {
+  availability_zones = ["us-east-1a"]
+  desired_capacity   = var.desired_capacity
+  max_size           = var.max_size
+  min_size           = var.min_size
+
+  launch_template {
+    id      = aws_launch_template.main.id
+    version = "$Latest"
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# resource "aws_instance" "test" {
+#   ami = data.aws_ami.ami.id
+#   instance_type = "t2.micro"
+#   vpc_security_group_ids = [aws_security_group.sg.id]
+#   subnet_id = var.subnet_id
 #
-#   policy = jsonencode({
-#     "Version": "2012-10-17",
-#     "Statement": [
-#       {
-#         "Sid": "VisualEditor0",
-#         "Effect": "Allow",
-#         "Action": [
-#           "ssm:GetParameterHistory",
-#           "ssm:GetParametersByPath",
-#           "ssm:GetParameters",
-#           "ssm:GetParameter"
-#         ],
-#         "Resource": "arn:aws:ssm:us-east-1:079329262703:parameter/roboshop.${var.env}.${var.component}.*"
-#       }
-#     ]
-#   })
+#   tags = {
+#     Name = var.component
+#   }
 # }
-# #IAM role
-# resource "aws_iam_role" "role" {
-#   name = "${var.component}-${var.env}-ec2-role"
-#
-#   assume_role_policy = jsonencode({
-#     "Version": "2012-10-17",
-#     "Statement": [
-#       {
-#         "Effect": "Allow",
-#         "Principal": {
-#           "Service": "ec2.amazonaws.com"
-#         },
-#         "Action": "sts:AssumeRole"
-#       }
-#     ]
-#   })
-#
-# }
-#
-# resource "aws_iam_instance_profile" "instance_profile" {
-#   name = "${var.component}-${var.env}-ec2-role"
-#   role = aws_iam_role.role.name
-# }
-#
-# resource "aws_iam_role_policy_attachment" "policy-attach" {
-#   role       = aws_iam_role.role.name
-#   policy_arn = aws_iam_policy.policy.arn
-# }
+
 #
 # # security group
 # resource "aws_security_group" "sg" {
+
 #   name        = "${var.component}-${var.env}-sg"
 #   description = "${var.component}-${var.env}-sg"
 #
@@ -122,37 +170,3 @@
 #   }
 # }
 
-# # security group
-resource "aws_security_group" "sg" {
-  name        = "${var.component}-${var.env}-sg"
-  description = "${var.component}-${var.env}-sg"
-  vpc_id = var.vpc_id
-
-  ingress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  egress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  tags = {
-    Name = "${var.component}-${var.env}-sg"
-  }
-}
-resource "aws_instance" "test" {
-  ami = data.aws_ami.ami.id
-  instance_type = "t2.micro"
-  vpc_security_group_ids = [aws_security_group.sg.id]
-  subnet_id = var.subnet_id
-
-  tags = {
-    Name = var.component
-  }
-}
