@@ -150,6 +150,8 @@ module "apps" {
   allow_ssh_cidr = var.allow_ssh_cidr
   lb_rule_priority = each.value["lb_rule_priority"]
   kms_arn = var.kms_key_arn
+  extra_param_access = try(each.value["extra_param_access"], [])
+
 }
 
 
