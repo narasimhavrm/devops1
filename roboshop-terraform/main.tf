@@ -9,6 +9,7 @@ module "vpc" {
   default_vpc_id = var.default_vpc_id
   default_vpc_rt = var.default_vpc_rt
 
+
 }
 
 # module "app_server" {
@@ -144,7 +145,9 @@ module "apps" {
 
   env = var.env
   tags = var.tags
-  kms_key_id = var.kms_key_id
+  kms_key_id = var.kms_key_arn
+  allow_ssh_cidr = var.allow_ssh_cidr
+
 }
 
 

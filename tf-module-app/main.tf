@@ -7,8 +7,14 @@ resource "aws_security_group" "main" {
   ingress {
     from_port   = var.app_port
     to_port     = var.app_port
-    protocol    = "-1"
+    protocol    = "tcp"
     cidr_blocks = var.sg_subnets_cidr
+  }
+  ingress {
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = var.allow_ssh_cidr
   }
 
   egress {
@@ -21,6 +27,13 @@ resource "aws_security_group" "main" {
   tags = {
     Name = "${var.component}-${var.env}-sg"
   }
+}
+
+resource "aws_lb_target_group" "main" {
+  name     = "${var.component}-${var.env}-tg"
+  port     = var.app_port
+  protocol = "HTTP"
+  vpc_id   = var.vpc_id
 }
 
 resource "aws_launch_template" "main" {
@@ -38,28 +51,34 @@ resource "aws_launch_template" "main" {
     tags = merge({ Name = "${var.component}-${var.env}", monitor = "true" }, var.tags )
   }
 
-  user_data = templatefile("${path.module}/userdata.sh", {
+  user_data = base64encode(templatefile("${path.module}/userdata.sh", {
     env =var.env
     component = var.component
 
-  })
-  root_block_device = {
-    encrypted = true
-    kms_key_id = var.kms_key_id
-  }
+  }))
+
+#   root_block_device = {
+#     encrypted = true
+#     kms_key_id = var.kms_key_id
+#   }
+#     block_device_mappings {
+#       device_name = "/dev/sda1"
+#       ebs {
+#         volume_size = 10
+#         encrypted = "true"
+#         kms_key_id = var.kms_key_id
+#
+#       }
+#     }
 }
 
-resource "aws_launch_template" "foobar" {
-  name_prefix   = "foobar"
-  image_id      = "ami-1a2b3c"
-  instance_type = "t2.micro"
-}
 
 resource "aws_autoscaling_group" "main" {
-  availability_zones = ["us-east-1a"]
   desired_capacity   = var.desired_capacity
   max_size           = var.max_size
   min_size           = var.min_size
+  vpc_zone_identifier = var.subnets
+  target_group_arns = [ aws_lb_target_group.main.arn]
 
   launch_template {
     id      = aws_launch_template.main.id
