@@ -23,9 +23,9 @@ variable "params" {
 
 
     {name = "roboshop.dev.payment.cart_host", value = "cart-dev.mystorymyway.online", type = "String"},
-    {name = "roboshop.dev.payment.cart_port", value = "8080", type = "String"},
+    {name = "roboshop.dev.payment.cart_port", value = "80", type = "String"},
     {name = "roboshop.dev.payment.user_host", value = "user-dev.mystorymyway.online", type = "String"},
-    {name = "roboshop.dev.payment.user_port", value = "8080", type = "String"},
+    {name = "roboshop.dev.payment.user_port", value = "80", type = "String"},
     {name = "roboshop.dev.payment.amqp_host", value = "rabbitmq-dev.mystorymyway.online", type = "String"},
     {name = "roboshop.dev.payment.amqp_user", value = "roboshop", type = "String"},
     {name = "roboshop.dev.shipping.cart_endpoint", value = "cart-dev.mystorymyway.online:8080", type = "String"},
