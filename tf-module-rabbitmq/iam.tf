@@ -14,9 +14,12 @@ resource "aws_iam_policy" "policy" {
           "ssm:GetParameterHistory",
           "ssm:GetParametersByPath",
           "ssm:GetParameters",
-          "ssm:GetParameter"
+          "ssm:GetParameter",
+          "kms:Decrypt"
         ],
-        "Resource": "arn:aws:ssm:us-east-1:079329262703:parameter/roboshop.${var.env}.${var.component}.*"
+        "Resource": [
+          "arn:aws:ssm:us-east-1:079329262703:parameter/roboshop.${var.env}.${var.component}.*",
+          var.kms_key_arn ]
       }
     ]
   })
