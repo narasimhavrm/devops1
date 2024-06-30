@@ -13,7 +13,7 @@ resource "aws_instance" "load-runner" {
     Name = "load-runner"
   }
 
-  provisioner "local-exec" {
+  provisioner "remote-exec" {
     connection {
       user = "root"
       password = "DevOps321"
