@@ -8,11 +8,17 @@ pipeline {
             ansiColor('xterm')
         }
 
+    parameters {
+            string(name: 'APP_INPUT', defaultValue: 'Mr Jenkins', description: 'just input')
+    }
+
+
     stages {
         stage('Hello') {
             steps {
                 echo 'Hello World'
                 sh 'env'
+                sh 'echo APP_INPUT - $APP_INPUT'
             }
         }
     }
