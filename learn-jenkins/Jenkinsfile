@@ -4,6 +4,9 @@ pipeline {
     environment {
       SSH = credentials('centos')
     }
+    options {
+            ansiColor('xterm')
+        }
 
     stages {
         stage('Hello') {
