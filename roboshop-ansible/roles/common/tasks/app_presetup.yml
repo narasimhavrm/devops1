@@ -13,12 +13,17 @@
     state: directory
     mode: '0755'
 
-- name: Download application content
+#- name: Download application content
+#  ansible.builtin.unarchive:
+#    src: https://roboshop-artifacts.s3.amazonaws.com/{{ component }}.zip
+#    dest: /app
+#    remote_src: yes
+
+- name: Download application content from Nexus
   ansible.builtin.unarchive:
-    src: https://roboshop-artifacts.s3.amazonaws.com/{{ component }}.zip
+    src: http://172.31.86.240:8081/repository/{{component}}/{{component}}-{{app_version}}.zip
     dest: /app
     remote_src: yes
-
 
 
 
