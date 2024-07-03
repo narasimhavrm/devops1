@@ -5,6 +5,11 @@ pipeline {
           string(name: 'ENV', defaultValue: '', description: 'Which environment')
           string(name: 'APP_VERSION', defaultValue: '', description: 'Which version')
   }
+  stage('Update Parameters') {
+        steps {
+          sh 'aws ssm put-parameter --name roboshop.${ENV}.${COMPONENT}.app_version --type "String" --value "${APP_VERSION}" --overwrite'
+        }
+      }
 
   stages {
     stage('Get Servers') {
