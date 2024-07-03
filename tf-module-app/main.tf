@@ -67,7 +67,7 @@ resource "aws_lb_listener_rule" "static" {
 
   condition {
     host_header {
-      values = ["${var.component}-${var.env}.mystorymyway.online"]
+      values = ["${local.dns_name}.mystorymyway.online"]
     }
   }
 }
@@ -123,7 +123,7 @@ resource "aws_autoscaling_group" "main" {
 }
 
 resource "aws_route53_record" "dns" {
-  name    = "${var.component}-${var.env}"
+  name    = local.dns_name
   type    = "CNAME"
   zone_id = "Z034092834K6LW0HQ9HDN"
   ttl = 30
