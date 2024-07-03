@@ -1,9 +1,19 @@
 pipeline {
-  agent {  node {  label 'workstation'}
+  agent {
+    node {
+      label 'workstation'
+    }
+  }
+
+  options {
+    ansiColor('xterm')
+  }
+
   parameters {
-          string(name: 'COMPONENT', defaultValue: '', description: 'Which component')
-          string(name: 'ENV', defaultValue: '', description: 'Which environment')
-          string(name: 'APP_VERSION', defaultValue: '', description: 'Which version')
+    string(name: 'COMPONENT', defaultValue: '', description: 'Which Component')
+    string(name: 'ENV', defaultValue: '', description: 'Which Env')
+    string(name: 'APP_VERSION', defaultValue: '', description: 'Which Version')
+
   }
 
   stages {
